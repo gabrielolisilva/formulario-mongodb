@@ -1,6 +1,8 @@
 require("dotenv").config();
 require("express-async-errors");
 
+const bodyParser = require("body-parser");
+
 const express = require("express");
 const app = express();
 
@@ -11,6 +13,9 @@ const appRoutes = require("./routes/routes");
 const notFoundMiddleware = require("./middleware/not-found");
 
 app.use(express.static("public"));
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const port = process.env.PORT || 3000;
 
